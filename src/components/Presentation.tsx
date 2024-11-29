@@ -1,10 +1,14 @@
+import { SOCIALS } from "@/components/SOCIALS";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 const Presentation = () => {
   return (
@@ -29,6 +33,15 @@ const Presentation = () => {
             placerat malesuada in, fringilla vulputate orci. Fusce id purus sem.
           </p>
         </CardDescription>
+        <CardFooter className="gap-2 justify-end">
+          {SOCIALS.map((social) => (
+            <Button key={social.name} className="">
+              <Link href={social.link} target="_blank">
+                <social.icon />
+              </Link>
+            </Button>
+          ))}
+        </CardFooter>
       </CardHeader>
     </Card>
   );
