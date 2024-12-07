@@ -1,25 +1,32 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Technos } from "@/components/Technos";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { ProjectType } from "@/content/collections";
 import Image from "next/image";
 
-const Project = () => {
+const Project = ({ project }: { project: ProjectType }) => {
   return (
     <Card className="max-w-[20rem]">
-      <CardHeader>
-        <CardTitle>Projet 1</CardTitle>
+      <CardHeader className="gap-2 text-center">
+        <CardTitle>{project.name}</CardTitle>
         <Image
-          src={"/supertong.png"}
-          alt="supertong"
+          src={project.image.src}
+          alt={project.image.alt}
           width={400}
           height={400}
         />
       </CardHeader>
       <CardContent>
-        <p>
-          Description : Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Nullam nec tristique ex, non pellentesque neque. Ut enim justo,
-          ultricies sit
-        </p>
+        <p>Description : {project.description}</p>
       </CardContent>
+      <CardFooter>
+        <Technos technos={project.technos} />
+      </CardFooter>
     </Card>
   );
 };
