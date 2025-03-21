@@ -11,7 +11,7 @@ import Image from "next/image";
 
 const Project = ({ project }: { project: ProjectType }) => {
   return (
-    <Card className="max-w-[20rem]">
+    <Card className="max-w-[20rem] border-primary">
       <CardHeader className="gap-2 text-center">
         <CardTitle>{project.name}</CardTitle>
         <Image

@@ -12,7 +12,7 @@ import Link from "next/link";
 
 const Presentation = () => {
   return (
-    <Card className="border">
+    <Card className="border-primary">
       <CardHeader className="gap-5">
         <CardTitle>Jeanne Grenet</CardTitle>
         <CardDescription className="flex gap-10">
