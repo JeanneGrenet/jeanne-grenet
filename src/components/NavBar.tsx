@@ -1,9 +1,5 @@
-"use client";
-
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { usePathname } from "next/navigation";
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const navigation = [
@@ -13,8 +9,6 @@ const navigation = [
 ];
 
 export function Navbar() {
-  const pathname = usePathname();
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-secondary bg-background/80 shadow-sm px-4">
       <div className="flex h-16 items-center justify-between">
@@ -32,12 +26,7 @@ export function Navbar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className={cn(
-                    "text-sm font-medium transition-colors hover:text-primary py-2 px-3 rounded-md",
-                    pathname === item.href
-                      ? "text-primary bg-secondary"
-                      : "text-muted-foreground"
-                  )}
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary py-2 px-3 rounded-md"
                 >
                   {item.name}
                 </Link>
