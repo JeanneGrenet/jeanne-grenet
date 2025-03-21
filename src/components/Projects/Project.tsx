@@ -41,14 +41,15 @@ const Project = ({ project }: { project: ProjectType }) => {
         <div className="w-full">
           <Technos technos={project.technos} />
         </div>
-
-        <Button
-          variant="outline"
-          size="sm"
-          className="self-end hover:bg-primary hover:text-primary-foreground"
-        >
-          View Project <ArrowUpRight className="ml-1 h-4 w-4" />
-        </Button>
+        {project.hasDetailsPage && (
+          <Button
+            variant="outline"
+            size="sm"
+            className="self-end hover:bg-primary hover:text-primary-foreground"
+          >
+            View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

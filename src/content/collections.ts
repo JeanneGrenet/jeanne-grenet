@@ -14,6 +14,7 @@ const collections = {
         alt: z.string(),
       }),
       technos: z.array(zTechnosType()).optional(),
+      hasDetailsPage: z.boolean().nullish(),
     }),
   }),
 } as const;
