@@ -4,11 +4,14 @@ import collections from "@/content/collections";
 const Projects = async () => {
   const projects = await collections.project.getAll();
   return (
-    <div>
-      {projects.map((project) => (
-        <Project key={project.name} project={project} />
-      ))}
-    </div>
+    <section className="flex flex-col gap-2">
+      <h2 className="font-semibold text-2xl ">My projects</h2>
+      <article className="flex gap-4">
+        {projects.map((project) => (
+          <Project key={project.metadata.slug} project={project} />
+        ))}
+      </article>
+    </section>
   );
 };
 

@@ -3,7 +3,7 @@ import Projects from "@/components/Projects/Projects";
 
 export default function Home() {
   return (
-    <div>
+    <div className="py-10 flex flex-col gap-8">
       <Presentation />
       <Projects />
     </div>
