@@ -8,24 +8,47 @@ import {
 } from "@/components/ui/card";
 import { ProjectType } from "@/content/collections";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { ArrowUpRight } from "lucide-react";
 
 const Project = ({ project }: { project: ProjectType }) => {
   return (
-    <Card className="max-w-[20rem] border-primary">
-      <CardHeader className="gap-2 text-center">
-        <CardTitle>{project.name}</CardTitle>
+    <Card className="border-primary/20 hover:border-primary transition-all duration-300 overflow-hidden group h-full flex flex-col card-shadow hover-card">
+      <div className="relative overflow-hidden">
         <Image
           src={project.image.src}
           alt={project.image.alt}
           width={400}
-          height={400}
+          height={300}
+          className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-500"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
+      </div>
+
+      <CardHeader className="pb-2">
+        <CardTitle className="text-xl font-semibold text-primary">
+          {project.name}
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <p>Description : {project.description}</p>
+
+      <CardContent className="flex-grow">
+        <p className="text-muted-foreground leading-relaxed text-sm">
+          {project.description}
+        </p>
       </CardContent>
-      <CardFooter>
-        <Technos technos={project.technos} />
+
+      <CardFooter className="flex flex-col gap-4 pt-4 border-t border-primary/10 bg-secondary/20">
+        <div className="w-full">
+          <Technos technos={project.technos} />
+        </div>
+
+        <Button
+          variant="outline"
+          size="sm"
+          className="self-end hover:bg-primary hover:text-primary-foreground"
+        >
+          View Project <ArrowUpRight className="ml-1 h-4 w-4" />
+        </Button>
       </CardFooter>
     </Card>
   );
