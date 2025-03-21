@@ -16,14 +16,12 @@ export const Technos = ({ technos }: { technos: ProjectType["technos"] }) => {
           .with("react", () => FaReact)
           .otherwise(() => null);
 
-        if (!Icon) return null;
-
         return (
           <div
             key={`${techno}-${index}`}
             className="flex items-center gap-1 px-3 py-1 rounded-full text-sm border text-primary bg-secondary border-primary/20"
           >
-            <Icon size={14} />
+            {Icon && <Icon size={14} />}
             <span className="font-medium capitalize">{techno}</span>
           </div>
         );

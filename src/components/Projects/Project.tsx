@@ -15,13 +15,21 @@ const Project = ({ project }: { project: ProjectType }) => {
   return (
     <Card className="border-primary/20 hover:border-primary transition-all duration-300 overflow-hidden group h-full flex flex-col card-shadow hover-card">
       <div className="relative overflow-hidden">
-        <Image
-          src={project.image.src}
-          alt={project.image.alt}
-          width={400}
-          height={300}
-          className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-500"
-        />
+        {project.image && project.image.src ? (
+          <Image
+            src={project.image.src}
+            alt={project.image.alt}
+            width={400}
+            height={300}
+            className="w-full h-48 object-cover object-center group-hover:scale-105 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-48 bg-gradient-to-br from-primary to-accent-foreground flex flex-col justify-center">
+            <h3 className="text-primary-foreground text-center">
+              {project.name}
+            </h3>
+          </div>
+        )}
         <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0 group-hover:opacity-50 transition-opacity"></div>
       </div>
 
