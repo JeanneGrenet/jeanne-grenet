@@ -17,7 +17,7 @@ export default function RootLayout({
       <head />
       <body className="min-h-screen bg-background">
         <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
-          <div className="relative min-h-screen flex flex-col">
+          <div className=" min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
             <Footer />

@@ -17,8 +17,8 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-primary/10 bg-background/80 backdrop-blur-md px-4">
-      <div className="container flex h-16 items-center">
+    <header className="sticky top-0 z-50 w-full border-b border-secondary bg-background/80 shadow-sm px-4">
+      <div className="flex h-16 items-center justify-between">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <span className="font-bold text-lg text-primary">
@@ -28,7 +28,7 @@ export function Navbar() {
         </div>
 
         <nav className="hidden md:flex flex-1 items-center justify-center">
-          <ul className="flex space-x-1">
+          <ul className="flex gap-2">
             {navigation.map((item) => (
               <li key={item.name}>
                 <Link
@@ -47,7 +47,7 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex gap-4 items-center">
           <Button
             variant="outline"
             asChild
