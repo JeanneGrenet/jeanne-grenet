@@ -10,7 +10,7 @@ const navigation = [
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-secondary bg-background/80 shadow-sm px-4">
+    <header className="sticky top-0 z-50 w-full border-b border-secondary bg-background shadow-sm px-4">
       <div className="flex h-16 items-center justify-between">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
