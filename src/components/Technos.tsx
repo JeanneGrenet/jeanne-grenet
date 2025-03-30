@@ -1,6 +1,7 @@
 import { ProjectType } from "@/content/collections";
-import { FaCss3Alt, FaHtml5, FaReact } from "react-icons/fa";
-import { RiSvelteFill } from "react-icons/ri";
+import { AiOutlinePython } from "react-icons/ai";
+import { FaCss3Alt, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
+import { RiFlutterLine, RiSvelteFill } from "react-icons/ri";
 import { match } from "ts-pattern";
 
 export const Technos = ({ technos }: { technos: ProjectType["technos"] }) => {
@@ -14,6 +15,9 @@ export const Technos = ({ technos }: { technos: ProjectType["technos"] }) => {
           .with("html", () => FaHtml5)
           .with("css", () => FaCss3Alt)
           .with("react", () => FaReact)
+          .with("flutter", () => RiFlutterLine)
+          .with("PHP", () => FaPhp)
+          .with("python", () => AiOutlinePython)
           .otherwise(() => null);
 
         return (
