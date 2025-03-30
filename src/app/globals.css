@@ -2,20 +2,140 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Base colors */
+    --background: 210 40% 98%; /* Light blue-gray background */
+    --foreground: 222 47% 11%; /* Dark blue-gray text */
+
+    /* Card colors */
+    --card: 0 0% 100%; /* White card background */
+    --card-foreground: 222 47% 11%; /* Same as main foreground */
+
+    /* Popover colors */
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    /* Primary colors - Teal (keeping your existing primary) */
+    --primary: 180 76% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary colors - Soft gray with teal undertones */
+    --secondary: 185 25% 95%;
+    --secondary-foreground: 180 76% 35%;
+
+    /* Accent colors - Soft blue */
+    --accent: 210 60% 90%;
+    --accent-foreground: 215 50% 25%;
+
+    /* Muted colors */
+    --muted: 210 30% 92%;
+    --muted-foreground: 215 25% 40%;
+
+    /* Destructive colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border, input, and ring colors */
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 180 76% 40%; /* Matching primary for focus rings */
+
+    /* Border radius */
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Base colors */
+    --background: 222 47% 8%; /* Dark blue-gray background */
+    --foreground: 210 40% 98%; /* Light text */
+
+    /* Card colors */
+    --card: 222 45% 12%; /* Slightly lighter than background */
+    --card-foreground: 210 40% 98%;
+
+    /* Popover colors */
+    --popover: 222 45% 12%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary colors - Brighter teal for dark mode */
+    --primary: 180 70% 50%;
+    --primary-foreground: 222 47% 10%;
+
+    /* Secondary colors */
+    --secondary: 180 30% 20%;
+    --secondary-foreground: 180 70% 80%;
+
+    /* Accent colors */
+    --accent: 200 50% 20%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Muted colors */
+    --muted: 215 30% 18%;
+    --muted-foreground: 210 30% 70%;
+
+    /* Destructive colors */
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Border, input, and ring colors */
+    --border: 215 28% 25%;
+    --input: 215 28% 25%;
+    --ring: 180 70% 50%; /* Matching primary */
+
+    /* Chart colors - Brighter for dark mode */
+    --chart-1: 180 70% 50%; /* Primary teal */
+    --chart-2: 195 65% 60%; /* Bright blue */
+    --chart-3: 165 70% 55%; /* Bright green-teal */
+    --chart-4: 210 75% 65%; /* Bright blue-purple */
+    --chart-5: 150 60% 55%; /* Bright green */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+
+  h1 {
+    @apply text-3xl md:text-4xl font-bold;
+  }
+
+  h2 {
+    @apply text-2xl md:text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl md:text-2xl font-semibold;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}
+
+@layer components {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .hover-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:border-primary/50;
+  }
+
+  .card-shadow {
+    @apply shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)];
+  }
 }
