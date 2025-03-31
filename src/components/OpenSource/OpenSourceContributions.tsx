@@ -6,7 +6,7 @@ import { LuArrowUpRight } from "react-icons/lu";
 
 const OpenSourceContributions = async () => {
   return (
-    <section className="flex flex-col gap-4" id="projects">
+    <section className="flex flex-col gap-4" id="opensource">
       <div className="flex items-center gap-3 mb-2">
         <h2 className="text-primary">My OpenSource contributions</h2>
         <div className="h-px flex-1 bg-primary/30"></div>
