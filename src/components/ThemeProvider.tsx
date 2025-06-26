@@ -1,84 +1,124 @@
 "use client";
 
-import * as React from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { GENERAL_THEMES } from "./constants/THEMES";
 
-type Theme = "light" | "dark" | "system";
-
-interface ThemeProviderProps {
-  children: React.ReactNode;
-  defaultTheme?: Theme;
-  storageKey?: string;
-}
+type ColorMode = "light" | "dark" | "system";
+type GeneralTheme = "default" | "elegant" | "playful" | "minimal";
 
 interface ThemeContextType {
-  theme: Theme;
-  setTheme: (theme: Theme) => void;
+  colorMode: ColorMode;
+  generalTheme: GeneralTheme;
+  setColorMode: (mode: ColorMode) => void;
+  setGeneralTheme: (theme: GeneralTheme) => void;
 }
 
-const initialState: ThemeContextType = {
-  theme: "system",
-  setTheme: () => null,
-};
-
-const ThemeContext = React.createContext<ThemeContextType>(initialState);
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
-  storageKey = "theme",
-}: ThemeProviderProps) {
-  const [mounted, setMounted] = React.useState(false);
+  storageKey = "portfolio-theme",
+}: {
+  children: React.ReactNode;
+  storageKey?: string;
+}) {
+  const [mounted, setMounted] = useState(false);
+  const [colorMode, setColorMode] = useState<ColorMode>("system");
+  const [generalTheme, setGeneralTheme] = useState<GeneralTheme>("default");
 
-  const [theme, setTheme] = React.useState<Theme>(defaultTheme);
-
-  React.useEffect(() => {
-    const savedTheme = localStorage.getItem(storageKey) as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+  // Chargement initial
+  useEffect(() => {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      try {
+        const { colorMode: savedColorMode, generalTheme: savedGeneralTheme } =
+          JSON.parse(saved);
+        if (savedColorMode) setColorMode(savedColorMode);
+        if (savedGeneralTheme) setGeneralTheme(savedGeneralTheme);
+      } catch {
+        console.error("Failed to parse initial theme");
+      }
     }
     setMounted(true);
   }, [storageKey]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!mounted) return;
 
-    const root = window.document.documentElement;
+    const root = document.documentElement;
     root.classList.remove("light", "dark");
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
+    const finalMode =
+      colorMode === "system"
+        ? window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light"
+        : colorMode;
 
-      root.classList.add(systemTheme);
-    } else {
-      root.classList.add(theme);
-    }
-  }, [theme, mounted]);
+    root.classList.add(finalMode);
+  }, [colorMode, mounted]);
 
-  const value = React.useMemo(
-    () => ({
-      theme,
-      setTheme: (theme: Theme) => {
-        localStorage.setItem(storageKey, theme);
-        setTheme(theme);
-      },
-    }),
-    [theme, storageKey]
-  );
+  useEffect(() => {
+    if (!mounted) return;
+
+    const root = document.documentElement;
+    const themeConfig = GENERAL_THEMES[generalTheme];
+
+    Object.values(GENERAL_THEMES).forEach((theme) => {
+      root.classList.remove(theme.cssClass, theme.fontClass);
+    });
+
+    root.classList.add(themeConfig.cssClass, themeConfig.fontClass);
+  }, [generalTheme, mounted]);
+
+  const saveConfig = (
+    newColorMode: ColorMode,
+    newGeneralTheme: GeneralTheme
+  ) => {
+    localStorage.setItem(
+      storageKey,
+      JSON.stringify({
+        colorMode: newColorMode,
+        generalTheme: newGeneralTheme,
+      })
+    );
+  };
+
+  const handleSetColorMode = (mode: ColorMode) => {
+    setColorMode(mode);
+    saveConfig(mode, generalTheme);
+  };
+
+  const handleSetGeneralTheme = (theme: GeneralTheme) => {
+    setGeneralTheme(theme);
+    saveConfig(colorMode, theme);
+  };
 
   return (
-    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+    <ThemeContext.Provider
+      value={{
+        colorMode,
+        generalTheme,
+        setColorMode: handleSetColorMode,
+        setGeneralTheme: handleSetGeneralTheme,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
   );
 }
 
 export function useTheme() {
-  const context = React.useContext(ThemeContext);
-
-  if (context === undefined) {
+  const context = useContext(ThemeContext);
+  if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
   }
-
   return context;
 }
+
+export function useGeneralThemeInfo() {
+  const { generalTheme } = useTheme();
+  return GENERAL_THEMES[generalTheme];
+}
+
+export type { ColorMode, GeneralTheme };

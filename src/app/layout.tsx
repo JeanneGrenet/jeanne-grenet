@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head />
       <body className="min-h-screen bg-background">
-        <ThemeProvider defaultTheme="system" storageKey="portfolio-theme">
+        <ThemeProvider storageKey="portfolio-theme">
           <div className=" min-h-screen flex flex-col">
             <Navbar />
             <main className="flex-1">{children}</main>
