@@ -19,9 +19,9 @@ import { useEffect, useState } from "react";
 import { GENERAL_THEMES } from "./constants/THEMES";
 
 const COLOR_MODES = {
-  light: { icon: Sun, label: "Clair", className: "text-yellow-500" },
-  dark: { icon: Moon, label: "Sombre", className: "text-blue-400" },
-  system: { icon: Monitor, label: "Système", className: "text-primary" },
+  light: { icon: Sun, label: "Light", className: "text-yellow-500" },
+  dark: { icon: Moon, label: "Dark", className: "text-blue-400" },
+  system: { icon: Monitor, label: "System", className: "text-primary" },
 } as const;
 
 export function ThemeSwitcher() {
@@ -43,12 +43,12 @@ export function ThemeSwitcher() {
           className="rounded-full border border-primary/30 shadow-sm hover:bg-primary hover:text-primary-foreground"
         >
           <Palette className="h-5 w-5 text-primary" />
-          <span className="sr-only">Personnaliser les thèmes</span>
+          <span className="sr-only">Customize themes</span>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent align="end" className="w-56">
-        <DropdownMenuLabel>Mode de couleur</DropdownMenuLabel>
+        <DropdownMenuLabel>Color Mode</DropdownMenuLabel>
         {Object.entries(COLOR_MODES).map(([mode, config]) => {
           const Icon = config.icon;
           return (
@@ -66,7 +66,7 @@ export function ThemeSwitcher() {
 
         <DropdownMenuSeparator />
 
-        <DropdownMenuLabel>Style général</DropdownMenuLabel>
+        <DropdownMenuLabel>General Style</DropdownMenuLabel>
         {Object.entries(GENERAL_THEMES).map(([key, theme]) => (
           <DropdownMenuItem
             key={key}

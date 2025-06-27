@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import des polices pour les thèmes généraux */
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
 
 @layer base {
   :root {
@@ -129,227 +128,38 @@
   }
 }
 
-/* ===========================================
-   THÈMES GÉNÉRAUX - CLASSES DE POLICES
-   =========================================== */
+/* ---------- MIAMI ---------- */
+.theme-miami {
+  --primary: 320 100% 60%;
+  --accent: 180 80% 80%;
+  --background: 180 100% 95%;
+  --foreground: 320 100% 25%;
 
-.font-inter {
-  --theme-font-family: "Inter", system-ui, sans-serif;
+  --font-family: "Inter", system-ui, sans-serif;
 }
-.font-poppins {
-  --theme-font-family: "Poppins", system-ui, sans-serif;
-}
-.font-serif {
-  --theme-font-family: Georgia, "Times New Roman", serif;
-}
-.font-comic {
-  --theme-font-family: "Comic Neue", cursive, sans-serif;
-}
-.font-mono {
-  --theme-font-family: "Fira Code", Consolas, monospace;
+.theme-miami.dark {
+  --primary: 320 100% 65%;
+  --accent: 180 100% 70%;
+  --background: 250 30% 10%;
+  --foreground: 180 100% 90%;
+
+  --font-family: "Inter", system-ui, sans-serif;
 }
 
-/* ===========================================
-   THÈME PAR DÉFAUT
-   =========================================== */
+/* ---------- NOËL ---------- */
+.theme-noel {
+  --primary: 0 85% 45%;
+  --accent: 145 45% 30%;
+  --background: 0 0% 100%;
+  --foreground: 145 50% 20%;
 
-.theme-default {
-  --theme-border-radius: 0.5rem;
-  --theme-transition-speed: 150ms;
-  --theme-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
-  --theme-hover-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --font-family: "Inter", system-ui, sans-serif;
 }
+.theme-noel.dark {
+  --primary: 0 85% 55%;
+  --accent: 145 60% 35%;
+  --background: 150 30% 10%;
+  --foreground: 0 0% 90%;
 
-.theme-default.dark {
-  --theme-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  --theme-hover-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-/* ===========================================
-   THÈME MODERNE
-   =========================================== */
-
-.theme-modern {
-  --theme-border-radius: 1rem;
-  --theme-transition-speed: 200ms;
-  --theme-card-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-  --theme-hover-card-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-.theme-modern.dark {
-  --theme-card-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-  --theme-hover-card-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-}
-
-.theme-modern .hover-card:hover {
-  transform: translateY(-4px);
-}
-
-/* ===========================================
-   THÈME ÉLÉGANT
-   =========================================== */
-
-.theme-elegant {
-  --theme-border-radius: 0.25rem;
-  --theme-transition-speed: 300ms;
-  --theme-card-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-  --theme-hover-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-
-.theme-elegant.dark {
-  --theme-card-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
-  --theme-hover-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-}
-
-.theme-elegant h1,
-.theme-elegant h2,
-.theme-elegant h3 {
-  font-weight: 500;
-  letter-spacing: -0.025em;
-}
-
-.theme-elegant .hover-card:hover {
-  transform: translateY(-2px);
-}
-
-/* ===========================================
-   THÈME LUDIQUE
-   =========================================== */
-
-.theme-playful {
-  --theme-border-radius: 1.5rem;
-  --theme-transition-speed: 250ms;
-  --theme-card-shadow: 0 4px 14px rgba(59, 130, 246, 0.12);
-  --theme-hover-card-shadow: 0 8px 25px rgba(59, 130, 246, 0.2);
-}
-
-.theme-playful.dark {
-  --theme-card-shadow: 0 4px 14px rgba(96, 165, 250, 0.15);
-  --theme-hover-card-shadow: 0 8px 25px rgba(96, 165, 250, 0.25);
-}
-
-.theme-playful .card-shadow {
-  transform: rotate(-0.5deg);
-}
-
-.theme-playful .hover-card:hover {
-  transform: rotate(0deg) translateY(-6px) scale(1.02);
-}
-
-.theme-playful button:hover {
-  transform: scale(1.05) rotate(1deg);
-}
-
-/* ===========================================
-   THÈME MINIMALISTE
-   =========================================== */
-
-.theme-minimal {
-  --theme-border-radius: 0.125rem;
-  --theme-transition-speed: 100ms;
-  --theme-card-shadow: none;
-  --theme-hover-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-}
-
-.theme-minimal.dark {
-  --theme-hover-card-shadow: 0 1px 3px rgba(255, 255, 255, 0.05);
-}
-
-.theme-minimal .card-shadow {
-  box-shadow: none !important;
-  border: 1px solid hsl(var(--border));
-}
-
-.theme-minimal .hover-card:hover {
-  border-color: hsl(var(--primary));
-  box-shadow: var(--theme-hover-card-shadow) !important;
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
-
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
-}
-
-@layer components {
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
-
-  .hover-card {
-    transition: all var(--theme-transition-speed) ease;
-  }
-
-  .hover-card:hover {
-    box-shadow: var(--theme-hover-card-shadow);
-    border-color: hsl(var(--primary) / 0.5);
-  }
-
-  .card-shadow {
-    box-shadow: var(--theme-card-shadow);
-    border-radius: var(--theme-border-radius);
-    transition: all var(--theme-transition-speed) ease;
-  }
-
-  /* Styles pour les boutons avec thèmes */
-  button,
-  .btn {
-    border-radius: var(--theme-border-radius);
-    transition: all var(--theme-transition-speed) ease;
-  }
-
-  /* Styles pour les cartes avec thèmes */
-  .card {
-    border-radius: var(--theme-border-radius);
-  }
-
-  /* Override spécifique pour rounded-full */
-  .rounded-full {
-    border-radius: 9999px !important;
-  }
-
-  /* Override pour le thème minimal */
-  .theme-minimal .rounded-full {
-    border-radius: 0.375rem !important;
-  }
-}
-
-/* ===========================================
-   ANIMATIONS ET TRANSITIONS
-   =========================================== */
-
-@keyframes theme-change {
-  0% {
-    opacity: 0.95;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-body {
-  animation: theme-change var(--theme-transition-speed) ease;
-}
-
-/* Responsive - Désactive certains effets sur mobile */
-@media (max-width: 768px) {
-  .theme-playful .card-shadow {
-    transform: none;
-  }
-
-  .theme-playful .hover-card:hover {
-    transform: translateY(-3px) scale(1.01);
-  }
-
-  .theme-playful button:hover {
-    transform: scale(1.02);
-  }
+  --font-family: "Inter", system-ui, sans-serif;
 }

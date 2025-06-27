@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { GENERAL_THEMES } from "./constants/THEMES";
 
 type ColorMode = "light" | "dark" | "system";
-type GeneralTheme = "default" | "elegant" | "playful" | "minimal";
+type GeneralTheme = "default" | "miami" | "noel";
 
 interface ThemeContextType {
   colorMode: ColorMode;
