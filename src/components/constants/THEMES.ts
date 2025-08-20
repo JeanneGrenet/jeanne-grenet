@@ -13,7 +13,7 @@ export const GENERAL_THEMES = {
   },
   noel: {
     name: "Christmas",
-    description: "Traditional red and green",
+    description: "Traditional Christmas atmosphere",
     fontClass: "font-serif",
     cssClass: "theme-noel",
   },

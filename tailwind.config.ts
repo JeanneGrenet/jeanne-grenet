@@ -57,9 +57,13 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        inter: ["Inter", "system-ui", "sans-serif"],
         poppins: ["Poppins", "system-ui", "sans-serif"],
-        comic: ["Comic Neue", "cursive", "sans-serif"],
+        heading: [
+          "var(--theme-heading-font-family)",
+          "system-ui",
+          "sans-serif",
+        ],
+        body: ["var(--theme-font-family)", "system-ui", "sans-serif"],
       },
     },
   },

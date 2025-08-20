@@ -14,7 +14,7 @@ export function Navbar() {
       <div className="flex h-16 items-center justify-between">
         <div className="mr-4 flex">
           <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-lg text-primary">
+            <span className="font-bold text-lg text-primary font-heading tracking-wide">
               Jeanne Grenet
             </span>
           </Link>
@@ -26,7 +26,7 @@ export function Navbar() {
               <li key={item.name}>
                 <Link
                   href={item.href}
-                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary py-2 px-3 rounded-md"
+                  className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary py-2 px-3"
                 >
                   {item.name}
                 </Link>
