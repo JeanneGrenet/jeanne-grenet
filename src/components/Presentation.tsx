@@ -1,4 +1,4 @@
-import { SOCIALS } from "@/components/SOCIALS";
+import { SOCIALS } from "@/components/constants/SOCIALS";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import {
@@ -21,7 +21,7 @@ const Presentation = () => {
           </AvatarFallback>
         </Avatar>
         <div className="flex flex-col gap-4">
-          <CardTitle className="text-3xl font-bold text-primary">
+          <CardTitle className="text-3xl font-bold text-primary font-heading tracking-wide">
             Jeanne Grenet
           </CardTitle>
           <div className="flex flex-wrap items-center gap-2 text-muted-foreground text-sm">

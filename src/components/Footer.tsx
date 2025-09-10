@@ -1,4 +1,4 @@
-import { SOCIALS } from "@/components/SOCIALS";
+import { SOCIALS } from "@/components/constants/SOCIALS";
 import Link from "next/link";
 
 export function Footer() {
