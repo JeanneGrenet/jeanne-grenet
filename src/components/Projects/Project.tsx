@@ -36,7 +36,7 @@ const Project = ({ project }: { project: ProjectType }) => {
         </div>
 
         <CardHeader className="pb-2">
-          <CardTitle className="text-xl font-semibold text-primary">
+          <CardTitle className="text-xl font-semibold text-primary font-heading tracking-wider">
             {project.name}
           </CardTitle>
         </CardHeader>

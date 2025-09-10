@@ -1,4 +1,4 @@
-import { SOCIALS } from "@/components/SOCIALS";
+import { SOCIALS } from "@/components/constants/SOCIALS";
 import Link from "next/link";
 
 export function Footer() {
@@ -6,7 +6,7 @@ export function Footer() {
 
   return (
     <footer className="w-full border-t border-primary/10 py-6 mt-16 bg-secondary/20 px-4">
-      <div className="container flex flex-col items-center gap-4 md:flex-row md:justify-between">
+      <div className="container flex flex-col  gap-4 md:flex-row md:justify-between mx-auto">
         <p className="text-sm text-muted-foreground">
           © {year}{" "}
           <span className="text-primary font-medium">Jeanne Grenet</span>. All

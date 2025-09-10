@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Impact:wght@400;600;700&display=swap");
+
 @layer base {
   :root {
     /* Base colors */
@@ -43,6 +49,14 @@
 
     /* Border radius */
     --radius: 0.5rem;
+
+    /* Variables pour les thèmes généraux */
+    --theme-border-radius: 0.5rem;
+    --theme-transition-speed: 150ms;
+    --theme-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    --theme-hover-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --theme-font-family: "Inter", system-ui, sans-serif;
+    --theme-heading-font-family: "Inter", system-ui, sans-serif; /* Ajout de la police par défaut pour les titres */
   }
 
   .dark {
@@ -89,14 +103,31 @@
     --chart-3: 165 70% 55%; /* Bright green-teal */
     --chart-4: 210 75% 65%; /* Bright blue-purple */
     --chart-5: 150 60% 55%; /* Bright green */
+
+    /* Ombres adaptées au mode sombre */
+    --theme-card-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    --theme-hover-card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   }
 
   * {
     @apply border-border;
+    transition-duration: var(--theme-transition-speed);
   }
 
   body {
-    @apply bg-background text-foreground font-sans;
+    @apply bg-background text-foreground;
+    font-family: var(--theme-font-family);
+    transition: all var(--theme-transition-speed) ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--theme-heading-font-family);
+    letter-spacing: var(--theme-heading-letter-spacing, normal);
   }
 
   h1 {
@@ -112,30 +143,70 @@
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* ---------- MIAMI ---------- */
+.theme-miami {
+  --primary: 320 85% 55%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 180 85% 65%;
+  --accent-foreground: 240 20% 15%;
+  --background: 180 40% 96%;
+  --foreground: 320 60% 25%;
 
-  .animation-delay-2000 {
-    animation-delay: 2s;
-  }
+  --theme-font-family: "Orbitron", monospace;
+  --theme-heading-font-family: "Impact", sans-serif;
+  --theme-heading-letter-spacing: 0.1rem;
+}
+.theme-miami.dark {
+  --primary: 320 100% 65%;
+  --primary-foreground: 250 30% 10%;
+  --accent: 180 100% 70%;
+  --accent-foreground: 250 30% 10%;
+  --background: 250 30% 10%;
+  --foreground: 180 100% 90%;
 
-  .animation-delay-4000 {
-    animation-delay: 4s;
-  }
+  --card: 250 25% 15%;
+  --card-foreground: 180 100% 90%;
+
+  --secondary: 280 80% 50%;
+  --secondary-foreground: 0 0% 100%;
+
+  --theme-font-family: "Orbitron", monospace;
+  --theme-heading-font-family: "Impact", sans-serif;
+  --theme-heading-letter-spacing: 0.1rem;
 }
 
-@layer components {
-  .focus-ring {
-    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
-  }
+/* ---------- NOËL ---------- */
+.theme-noel {
+  --primary: 0 85% 45%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 145 45% 30%;
+  --accent-foreground: 0 0% 100%;
+  --background: 0 0% 100%;
+  --foreground: 145 50% 20%;
 
-  .hover-card {
-    @apply transition-all duration-300 hover:shadow-lg hover:border-primary/50;
-  }
+  --card: 0 0% 98%;
+  --card-foreground: 145 50% 20%;
 
-  .card-shadow {
-    @apply shadow-[0_2px_10px_rgba(0,0,0,0.04)] dark:shadow-[0_2px_10px_rgba(0,0,0,0.2)];
-  }
+  --secondary: 45 90% 65%;
+  --secondary-foreground: 145 50% 20%;
+
+  --theme-font-family: "Mountains of Christmas", serif;
+  --theme-heading-font-family: "Dancing Script", cursive;
+}
+.theme-noel.dark {
+  --primary: 0 85% 55%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 145 60% 35%;
+  --accent-foreground: 0 0% 100%;
+  --background: 150 30% 10%;
+  --foreground: 0 0% 90%;
+
+  --card: 150 25% 15%;
+  --card-foreground: 0 0% 90%;
+
+  --secondary: 45 90% 55%;
+  --secondary-foreground: 150 30% 10%;
+
+  --theme-font-family: "Mountains of Christmas", serif;
+  --theme-heading-font-family: "Dancing Script", cursive;
 }
