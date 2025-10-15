@@ -1,24 +1,19 @@
-import { defineCollection } from "typed-mdx";
 import { z } from "zod";
+import { articleCollection, projectCollection } from "@/content/schema";
+
+export const zMetadata = z.object({
+  metadata: z.object({
+    slug: z.string().optional(),
+    filepath: z.string().optional(),
+  }),
+});
 
 const collections = {
-  project: defineCollection({
-    folder: "project",
-    schema: z.object({
-      name: z.string(),
-      description: z.string(),
-      image: z
-        .object({
-          src: z.string(),
-          alt: z.string(),
-        })
-        .optional(),
-      technos: z.array(z.string()).optional(),
-      hasDetailsPage: z.boolean().nullish(),
-      link: z.string().url().nullish(),
-    }),
-  }),
+  project: projectCollection,
+  article: articleCollection,
 } as const;
 
 export default collections;
 export type ProjectType = z.infer<typeof collections.project.schema>;
+export type ArticleType = z.infer<typeof collections.article.schema> &
+  z.infer<typeof zMetadata>;

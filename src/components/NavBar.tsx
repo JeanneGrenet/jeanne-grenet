@@ -4,8 +4,7 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "Projects", href: "/#projects" },
-  { name: "OpenSource", href: "/#opensource" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export function Navbar() {
