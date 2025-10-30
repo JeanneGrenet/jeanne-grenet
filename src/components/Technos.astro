@@ -1,0 +1,38 @@
+---
+import type { Project } from "@/schemas/project";
+import { AiOutlinePython } from "react-icons/ai";
+import { FaCss3Alt, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
+import { RiFlutterLine, RiSvelteFill } from "react-icons/ri";
+import { match } from "ts-pattern";
+
+interface Props {
+  technos: Project["technos"];
+}
+
+const { technos } = Astro.props;
+
+if (!technos || technos.length === 0) return null;
+---
+
+<div class="flex flex-wrap gap-2">
+  {
+    technos.map((techno) => {
+      const Icon = match(techno)
+        .with("svelte.js", () => RiSvelteFill)
+        .with("html", () => FaHtml5)
+        .with("css", () => FaCss3Alt)
+        .with("react", () => FaReact)
+        .with("flutter", () => RiFlutterLine)
+        .with("PHP", () => FaPhp)
+        .with("python", () => AiOutlinePython)
+        .otherwise(() => null);
+
+      return (
+        <div class="text-secondary-foreground bg-secondary border-primary/20 flex items-center gap-1 rounded-full border px-3 py-1 text-sm">
+          {Icon && <Icon size={14} />}
+          <span class="font-medium capitalize">{techno}</span>
+        </div>
+      );
+    })
+  }
+</div>
