@@ -1,0 +1,45 @@
+---
+import Button from "./starwind/button";
+
+// const navigation = [
+//   { name: "Home", href: "/" },
+//     { name: "Blog", href: "/blog" },
+// ];
+---
+
+<header class="bg-background fixed top-0 z-50 w-full px-4 shadow-sm">
+  <div class="flex h-16 items-center justify-between">
+    <div class="mr-4 flex">
+      <a href="/" class="mr-6 flex items-center space-x-2">
+        <span class="text-primary font-heading text-lg font-bold tracking-wide">
+          Jeanne Grenet
+        </span>
+      </a>
+    </div>
+
+    <!-- <nav class="hidden flex-1 items-center justify-center md:flex">
+      <ul class="flex gap-2">
+        {
+          navigation.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+              >
+                {item.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav> -->
+
+    <div class="flex items-center gap-4">
+      <Button variant="outline" size="sm">
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+          Resume
+        </a>
+      </Button>
+    </div>
+  </div>
+</header>
