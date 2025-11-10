@@ -1,0 +1,133 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { render } from "astro:content";
+import { getEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import { getReadingTime } from "@/lib/blog-utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/starwind/avatar";
+import { BiCalendar } from "react-icons/bi";
+import { BsClock } from "react-icons/bs";
+
+import ProgressBar from "@/components/Articles/ProgressBar";
+import TableOfContents from "@/components/Articles/TableOfContents";
+
+export const getStaticPaths = async () => {
+  const articles = await getCollection("articles");
+  return articles.map((article) => ({
+    params: { id: article.id },
+  }));
+};
+
+const { id } = Astro.params;
+const article = await getEntry("articles", id);
+if (!article) return;
+
+const { Content } = await render(article);
+
+const readingTime = getReadingTime(article.body ?? "");
+const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
+  "en-US",
+  {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  },
+);
+---
+
+<Layout>
+  <ProgressBar client:load />
+  <article class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header class="mx-auto max-w-3xl pt-16 pb-8 md:pt-24 md:pb-12">
+      {
+        article.data.tags && article.data.tags.length > 0 && (
+          <div class="mb-4 flex flex-wrap gap-2">
+            {article.data.tags.map((tag: string) => (
+              <a
+                href={`/blog/tags/${tag}`}
+                class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+
+      <h1
+        class="mb-6 text-4xl leading-tight font-bold tracking-tight text-gray-900 md:text-5xl lg:text-6xl"
+      >
+        {article.data.title}
+      </h1>
+
+      {
+        article.data.description && (
+          <p class="mb-8 text-xl leading-relaxed text-gray-600">
+            {article.data.description}
+          </p>
+        )
+      }
+
+      <div
+        class="flex flex-wrap items-center gap-6 border-t border-b border-gray-200 py-4 text-sm text-gray-500"
+      >
+        <div class="flex items-center gap-3">
+          <Avatar
+            class="ring-primary h-[2rem] w-[2rem] shadow-xl ring-1 ring-offset-2"
+          >
+            <AvatarImage src="/photo.png" alt="Jeanne Grenet's photo" />
+            <AvatarFallback
+              class="from-primary to-accent-foreground text-primary-foreground bg-gradient-to-br text-2xl font-bold"
+            >
+              JG
+            </AvatarFallback>
+          </Avatar>
+          <div>
+            <p class="font-medium text-gray-900">Jeanne Grenet</p>
+          </div>
+        </div>
+
+        <time
+          datetime={article.data.publishedDate.toString()}
+          class="flex items-center gap-1.5"
+        >
+          <BiCalendar />
+          {formattedDate}
+        </time>
+
+        <span class="flex items-center gap-1.5">
+          <BsClock />
+          {readingTime} min read
+        </span>
+      </div>
+    </header>
+
+    <div
+      class="relative mx-auto grid max-w-7xl grid-cols-1 gap-12 pb-24 lg:grid-cols-[1fr_250px]"
+    >
+      <div class="mx-auto max-w-3xl">
+        <div
+          class="prose prose-lg prose-gray prose-headings:font-bold prose-headings:tracking-tight prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h3:text-2xl prose-h3:mt-8 prose-h3:mb-4 prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-6 prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-strong:font-semibold prose-code:text-sm prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-blockquote:border-l-4 prose-blockquote:border-primary prose-blockquote:pl-6 prose-blockquote:italic prose-ul:my-6 prose-li:my-2 prose-img:rounded-lg prose-img:shadow-md max-w-none"
+        >
+          <Content />
+        </div>
+      </div>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-24">
+          <h3 class="mb-4 text-sm font-semibold text-gray-900">On this page</h3>
+          <TableOfContents client:load containerSelector="article" />
+        </div>
+      </aside>
+    </div>
+
+    <!-- <section class="mx-auto max-w-7xl border-t border-gray-200 py-16">
+      <h2 class="mb-8 text-2xl font-bold text-gray-900">Related Articles</h2>
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-3"></div>
+    </section> -->
+  </article>
+</Layout>
