@@ -23,7 +23,7 @@ const contributions = await getCollection("opensourceContributions");
   <div class="flex w-full flex-col gap-6 md:flex-row">
     {
       contributions.map((contribution) => (
-        <Card>
+        <Card class="border-secondary card-shadow">
           <CardHeader>
             <CardTitle class="text-primary font-semibold">
               {contribution.data.name}
