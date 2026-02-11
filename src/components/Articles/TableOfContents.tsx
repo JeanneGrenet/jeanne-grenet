@@ -44,7 +44,7 @@ export default function TableOfContents({
             <a
               href={`#${item.id}`}
               className={
-                "block py-1 text-gray-600 transition-colors hover:text-gray-900" +
+                "text-muted-foreground hover:text-foreground block py-1 transition-colors" +
                 (item.level === 3 ? " pl-4 text-xs" : "")
               }
             >

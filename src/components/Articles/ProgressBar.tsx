@@ -18,7 +18,7 @@ export default function ProgressBar() {
   }, []);
 
   return (
-    <div className="fixed top-0 right-0 left-0 z-50 h-1 bg-gray-100">
+    <div className="bg-muted/80 fixed top-0 right-0 left-0 z-50 h-1">
       <div
         className="bg-primary h-full transition-all duration-150"
         style={{ width: `${width}%` }}

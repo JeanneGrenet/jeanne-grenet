@@ -3,26 +3,24 @@ import SOCIALS from "./constants/SOCIALS";
 const year = new Date().getFullYear();
 ---
 
-<footer
-  class="border-primary/10 bg-secondary/20 mt-16 w-full border-t px-4 py-6"
->
+<footer data-site-footer class="mt-16 w-full px-4 pb-8">
   <div
-    class="container mx-auto flex flex-col gap-4 md:flex-row md:justify-between"
+    class="mx-auto flex max-w-6xl flex-col gap-4 rounded-3xl border border-border/75 bg-card/75 px-5 py-5 shadow-lg backdrop-blur-sm md:flex-row md:items-center md:justify-between"
   >
-    <p class="text-muted-foreground text-sm">
+    <p class="text-muted-foreground text-sm leading-relaxed">
       © {year}{" "}
-      <span class="text-primary font-medium">Jeanne Grenet</span>. All rights
+      <span class="text-primary font-heading">Jeanne Grenet</span>. All rights
       reserved.
     </p>
 
-    <div class="flex gap-4">
+    <div class="flex gap-3">
       {
         SOCIALS.filter((social) => social.link).map((social) => (
           <a
             href={social.link}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-muted-foreground hover:text-primary transition-colors"
+            class="text-muted-foreground hover:text-foreground hover:bg-secondary/75 flex h-9 w-9 items-center justify-center rounded-full border border-border/70 transition-colors"
             aria-label={social.name}
           >
             <social.icon className="h-5 w-5" />
