@@ -9,7 +9,7 @@ const navigation = [
 
 <header class="fixed inset-x-0 top-0 z-50 px-4 py-3">
   <div
-    class="border-border/70 bg-card/85 mx-auto flex h-14 max-w-6xl items-center justify-between rounded-full border px-8 shadow-lg backdrop-blur-xl"
+    class="border-border/70 bg-card/85 mx-auto flex h-14 max-w-6xl items-center justify-between rounded-2xl border px-2 pl-4 shadow-lg backdrop-blur-xl"
   >
     <div class="mr-4 flex items-center gap-3">
       <a href="/" class="flex items-center gap-3">
@@ -20,9 +20,7 @@ const navigation = [
     </div>
 
     <nav class="hidden flex-1 items-center justify-center md:flex">
-      <ul
-        class="bg-background/85 border-border/60 flex gap-1 rounded-full border p-1"
-      >
+      <ul class="flex gap-1 rounded-full p-1">
         {
           navigation.map((item) => (
             <li>
@@ -39,11 +37,7 @@ const navigation = [
     </nav>
 
     <div class="flex items-center gap-4">
-      <Button
-        variant="outline"
-        size="sm"
-        class="border-primary/45 bg-background/80 hover:border-primary rounded-full px-4 font-semibold"
-      >
+      <Button variant="outline" size="sm">
         <a
           href="/resume.pdf"
           target="_blank"

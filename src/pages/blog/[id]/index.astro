@@ -35,7 +35,7 @@ const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
     year: "numeric",
     month: "long",
     day: "numeric",
-  },
+  }
 );
 ---
 
@@ -46,13 +46,10 @@ const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
       {
         article.data.tags && article.data.tags.length > 0 && (
           <div class="mb-4 flex flex-wrap gap-2">
-            {article.data.tags.map((tag: string) => (
-              <a
-                href={`/blog/tags/${tag}`}
-                class="bg-muted text-muted-foreground hover:text-foreground rounded-full border border-border/70 px-3 py-1 text-xs font-medium transition-colors"
-              >
+            {article.data.tags.map((tag) => (
+              <span class="bg-muted text-muted-foreground hover:text-foreground border-border/70 rounded-full border px-3 py-1 text-xs font-medium transition-colors">
                 {tag}
-              </a>
+              </span>
             ))}
           </div>
         )
@@ -73,7 +70,7 @@ const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
       }
 
       <div
-        class="text-muted-foreground flex flex-wrap items-center gap-6 border-t border-b border-border/70 py-4 text-sm"
+        class="text-muted-foreground border-border/70 flex flex-wrap items-center gap-6 border-t border-b py-4 text-sm"
       >
         <div class="flex items-center gap-3">
           <Avatar
@@ -87,7 +84,7 @@ const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
             </AvatarFallback>
           </Avatar>
           <div>
-            <p class="font-medium text-foreground">Jeanne Grenet</p>
+            <p class="text-foreground font-medium">Jeanne Grenet</p>
           </div>
         </div>
 
@@ -119,7 +116,9 @@ const formattedDate = new Date(article.data.publishedDate).toLocaleDateString(
 
       <aside class="hidden lg:block">
         <div class="sticky top-24">
-          <h3 class="mb-4 text-sm font-semibold text-foreground">On this page</h3>
+          <h3 class="text-foreground mb-4 text-sm font-semibold">
+            On this page
+          </h3>
           <TableOfContents client:load containerSelector="article" />
         </div>
       </aside>
