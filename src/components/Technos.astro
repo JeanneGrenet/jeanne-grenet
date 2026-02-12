@@ -28,7 +28,7 @@ if (!technos || technos.length === 0) return null;
         .otherwise(() => null);
 
       return (
-        <div class="text-secondary-foreground bg-secondary border-primary/20 flex items-center gap-1 rounded-full border px-3 py-1 text-sm">
+        <div class="text-muted-foreground bg-background/75 border-border flex items-center gap-1 rounded-full border px-3 py-1 text-sm">
           {Icon && <Icon size={14} />}
           <span class="font-medium capitalize">{techno}</span>
         </div>

@@ -7,24 +7,26 @@ const navigation = [
 ];
 ---
 
-<header class="bg-background fixed top-0 z-50 w-full px-4 shadow-sm">
-  <div class="flex h-16 items-center justify-between">
-    <div class="mr-4 flex">
-      <a href="/" class="mr-6 flex items-center space-x-2">
-        <span class="text-primary font-heading text-lg font-bold tracking-wide">
+<header class="fixed inset-x-0 top-0 z-50 px-4 py-3">
+  <div
+    class="border-border/70 bg-card/85 mx-auto flex h-14 max-w-6xl items-center justify-between rounded-2xl border px-2 pl-4 shadow-lg backdrop-blur-xl"
+  >
+    <div class="mr-4 flex items-center gap-3">
+      <a href="/" class="flex items-center gap-3">
+        <span class="text-primary font-heading text-lg tracking-wide">
           Jeanne Grenet
         </span>
       </a>
     </div>
 
     <nav class="hidden flex-1 items-center justify-center md:flex">
-      <ul class="flex gap-2">
+      <ul class="flex gap-1 rounded-full p-1">
         {
           navigation.map((item) => (
             <li>
               <a
                 href={item.href}
-                class="text-muted-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
+                class="text-muted-foreground hover:text-foreground hover:bg-secondary/70 rounded-full px-4 py-1.5 text-sm font-medium transition-colors"
               >
                 {item.name}
               </a>
@@ -36,7 +38,12 @@ const navigation = [
 
     <div class="flex items-center gap-4">
       <Button variant="outline" size="sm">
-        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+        <a
+          href="/resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="tracking-wide"
+        >
           Resume
         </a>
       </Button>
