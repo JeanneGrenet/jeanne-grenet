@@ -1,0 +1,99 @@
+---
+import { Avatar, AvatarFallback, AvatarImage } from "./starwind/avatar";
+import Button from "./starwind/button";
+import {
+  Card,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "./starwind/card";
+import SOCIALS from "./constants/SOCIALS";
+---
+
+<Card
+  class="card-shadow from-card via-card to-secondary/25 border-border/80 overflow-hidden bg-gradient-to-br"
+>
+  <CardHeader class="gap-8 pb-2 md:flex-row md:items-center">
+    <Avatar
+      class="ring-primary/35 h-[10rem] w-[10rem] shadow-xl ring-4 ring-offset-2"
+    >
+      <AvatarImage src="/photo.png" alt="Jeanne Grenet's photo" />
+      <AvatarFallback
+        class="from-primary to-accent text-primary-foreground bg-gradient-to-br text-2xl font-bold"
+      >
+        JG
+      </AvatarFallback>
+    </Avatar>
+    <div class="flex flex-col gap-4">
+      <CardTitle class="text-primary font-heading text-4xl tracking-tight">
+        Jeanne Grenet
+      </CardTitle>
+      <div
+        class="text-muted-foreground flex flex-wrap items-center gap-2 text-sm font-medium"
+      >
+        <div class="bg-primary h-1.5 w-1.5 rounded-full"></div>
+        <span>Front-end Developer</span>
+        <div class="bg-primary h-1.5 w-1.5 rounded-full"></div>
+        <span>BearStudio</span>
+        <div class="bg-primary h-1.5 w-1.5 rounded-full"></div>
+        <span>Fork it! Community</span>
+        <div class="bg-primary h-1.5 w-1.5 rounded-full"></div>
+        <span>CESI</span>
+      </div>
+    </div>
+  </CardHeader>
+
+  <CardDescription class="px-6 py-4">
+    <p class="flex flex-col gap-2 leading-relaxed">
+      <span class="font-bold">
+        Hi, I&apos;m Jeanne Grenet, front-end developer.
+      </span>
+      <span>
+        I&apos;m currently in my third year of the Application Designer &
+        Developer Bachelor program at CESI (France), and I&apos;m continuing my
+        work-study experience at
+        <strong> BearStudio</strong>, where I&apos;ve had the opportunity to
+        work on full-stack projects across diverse sectors, from personal
+        branding to healthcare and insurance.
+      </span>
+      <span>
+        Every day, whether through my professional missions or academic
+        projects, I dive into technologies like <strong>React</strong>,{" "}
+        <strong>Tailwind CSS</strong>,<strong> Next.js</strong>,{" "}
+        <strong>Astro</strong>, <strong>Flutter</strong>, <strong>Java</strong
+        >,{" "}
+        <strong>PHP</strong>, and <strong>Python</strong>, while also
+        contributing to open-source projects and engaging in client meetings,
+        project management, and community-building initiatives.
+      </span>
+      <span>
+        I&apos;m always looking to keep growing, learning, and collaborating on
+        meaningful tech projects that challenge my skills and feed my curiosity.
+      </span>
+      <span>
+        I&apos;m enthusiastic, pragmatic, and always ready to bring ideas to
+        life, whether through clean code, collaborative energy, or creative
+        problem-solving.
+      </span>
+    </p>
+  </CardDescription>
+
+  <CardFooter
+    class="bg-muted/55 border-border/65 justify-end gap-3 border-t py-4"
+  >
+    {
+      SOCIALS.filter((social) => social.link).map((social) => (
+        <Button
+          variant="ghost"
+          size="icon"
+          class="hover:bg-secondary text-muted-foreground hover:text-foreground border-border/75 rounded-full border transition-all hover:scale-110"
+        >
+          <a href={social.link} target="_blank" aria-label={social.name}>
+            <social.icon className="h-5 w-5" />
+          </a>
+        </Button>
+      ))
+    }
+  </CardFooter>
+</Card>

@@ -1,0 +1,65 @@
+---
+import { LuArrowUpRight } from "react-icons/lu";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/starwind/card";
+import { Image } from "astro:assets";
+import Button from "@/components/starwind/button";
+import { getCollection } from "astro:content";
+
+const contributions = await getCollection("opensourceContributions");
+---
+
+<section class="flex flex-col gap-4">
+  <div class="mb-2 flex items-center gap-3">
+    <h2 class="section-title text-primary text-3xl">
+      OpenSource contributions
+    </h2>
+    <div class="bg-primary/35 h-px flex-1"></div>
+  </div>
+
+  <div class="flex w-full flex-col gap-6 md:flex-row">
+    {
+      contributions.map((contribution) => (
+        <Card class="card-shadow hover-card border-border/75 flex-1">
+          <CardHeader>
+            <CardTitle class="text-primary font-heading text-2xl tracking-tight">
+              {contribution.data.name}
+            </CardTitle>
+          </CardHeader>
+          <CardContent class="flex flex-col gap-4">
+            {contribution.data.image && (
+              <Image
+                src={contribution.data.image?.media}
+                alt={contribution.data.image?.alt}
+                width={400}
+                height={300}
+                class="h-56 w-full rounded-xl object-cover object-center"
+              />
+            )}
+            <p class="text-muted-foreground leading-relaxed">
+              {contribution.data.description}
+            </p>
+          </CardContent>
+          {contribution.data.link && (
+            <CardFooter>
+              <Button variant="primary" class="rounded-full font-semibold">
+                <a
+                  href={contribution.data.link}
+                  target="_blank"
+                  class="flex items-center gap-1.5"
+                >
+                  Learn more <LuArrowUpRight />
+                </a>
+              </Button>
+            </CardFooter>
+          )}
+        </Card>
+      ))
+    }
+  </div>
+</section>

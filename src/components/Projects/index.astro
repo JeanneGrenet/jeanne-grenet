@@ -1,0 +1,23 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => a.id.localeCompare(b.id));
+---
+
+<section class="flex flex-col gap-4" id="projects">
+  <div class="mb-2 flex items-center gap-3">
+    <h2 class="section-title text-primary text-3xl">Projects</h2>
+    <div class="bg-primary/35 h-px flex-1"></div>
+  </div>
+  <div class="flex w-full flex-col gap-6 md:flex-row md:flex-wrap">
+    {
+      sortedProjects.map((project) => (
+        <div class="grow-0 basis-full md:max-w-[calc(33%-1.5rem)]">
+          <ProjectCard project={project.data} />
+        </div>
+      ))
+    }
+  </div>
+</section>

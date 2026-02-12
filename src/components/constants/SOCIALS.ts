@@ -2,7 +2,7 @@ import { FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaBluesky } from "react-icons/fa6";
 import { MdMailOutline } from "react-icons/md";
 
-export const SOCIALS = [
+const SOCIALS = [
   {
     name: "github",
     link: "https://github.com/JeanneGrenet",
@@ -29,3 +29,5 @@ export const SOCIALS = [
     icon: MdMailOutline,
   },
 ];
+
+export default SOCIALS;
