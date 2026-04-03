@@ -15,7 +15,7 @@ const sortedProjects = projects.sort((a, b) => a.id.localeCompare(b.id));
     {
       sortedProjects.map((project) => (
         <div class="grow-0 basis-full md:max-w-[calc(33%-1.5rem)]">
-          <ProjectCard project={project.data} />
+          <ProjectCard project={project.data} id={project.id} />
         </div>
       ))
     }
