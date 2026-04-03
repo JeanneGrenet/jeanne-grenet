@@ -17,9 +17,11 @@ import TableOfContents from "@/components/Articles/TableOfContents";
 
 export const getStaticPaths = async () => {
   const articles = await getCollection("articles");
-  return articles.map((article) => ({
-    params: { id: article.id },
-  }));
+  return articles
+    .filter((article) => !article.data.externalUrl)
+    .map((article) => ({
+      params: { id: article.id },
+    }));
 };
 
 const { id } = Astro.params;
