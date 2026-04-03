@@ -3,6 +3,8 @@ import type { Project } from "@/schemas/project";
 import { AiOutlinePython } from "react-icons/ai";
 import { FaCss3Alt, FaHtml5, FaPhp, FaReact } from "react-icons/fa";
 import { RiFlutterLine, RiSvelteFill } from "react-icons/ri";
+import { SiAstro, SiExpress, SiPrisma } from "react-icons/si";
+import { TbBrandReactNative } from "react-icons/tb";
 import { match } from "ts-pattern";
 
 interface Props {
@@ -25,6 +27,10 @@ if (!technos || technos.length === 0) return null;
         .with("flutter", () => RiFlutterLine)
         .with("PHP", () => FaPhp)
         .with("python", () => AiOutlinePython)
+        .with("astro", () => SiAstro)
+        .with("express", () => SiExpress)
+        .with("prisma", () => SiPrisma)
+        .with("react-native", () => TbBrandReactNative)
         .otherwise(() => null);
 
       return (

@@ -12,12 +12,16 @@ import type { Project } from "@/schemas/project";
 
 interface Props {
   project: Project;
+  id: string;
 }
-const { project } = Astro.props;
+const { project, id } = Astro.props;
+
+const href = project.hasDetailsPage ? `/projects/${id}` : (project.link ?? "");
+const isExternal = !project.hasDetailsPage;
 ---
 
 <!-- TODO : ajouter le hasdetailpage pour savoir sur quoi rediriger -->
-<a href={project.link ?? ""} target="_blank">
+<a href={href} target={isExternal ? "_blank" : undefined}>
   <Card
     class="group card-shadow hover-card border-border/75 flex h-full flex-col overflow-hidden transition-all duration-300"
   >
@@ -41,6 +45,16 @@ const { project } = Astro.props;
         class="from-card absolute inset-0 bg-gradient-to-t to-transparent opacity-0 transition-opacity group-hover:opacity-65"
       >
       </div>
+      <span
+        class:list={[
+          "absolute top-3 right-3 rounded-full px-3 py-1 text-xs font-semibold shadow-md",
+          project.status === "done"
+            ? "bg-green-700 text-white"
+            : "bg-amber-700 text-white",
+        ]}
+      >
+        {project.status === "done" ? "Done" : "In progress"}
+      </span>
     </div>
 
     <CardHeader class="pb-2">

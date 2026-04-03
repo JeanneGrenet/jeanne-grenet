@@ -1,0 +1,81 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { render, getEntry, getCollection } from "astro:content";
+import Technos from "@/components/Technos.astro";
+
+export const getStaticPaths = async () => {
+  const projects = await getCollection("projects");
+  return projects
+    .filter((project) => project.data.hasDetailsPage)
+    .map((project) => ({
+      params: { id: project.id },
+    }));
+};
+
+const { id } = Astro.params;
+const project = await getEntry("projects", id);
+if (!project) return;
+
+const { Content } = await render(project);
+---
+
+<Layout>
+  <article class="mx-auto max-w-4xl px-4 pt-16 sm:px-6 lg:px-8">
+    <header class="pt-16 pb-8 md:pt-24 md:pb-12">
+      <h1
+        class="font-heading text-primary mb-4 text-4xl leading-tight tracking-tight md:text-5xl"
+      >
+        {project.data.name}
+      </h1>
+
+      <p class="text-muted-foreground mb-6 text-xl leading-relaxed">
+        {project.data.description}
+      </p>
+
+      <div
+        class="border-border/70 flex flex-wrap items-center gap-4 border-t border-b py-4"
+      >
+        {
+          project.data.status && (
+            <span
+              class:list={[
+                "rounded-full px-3 py-1 text-xs font-semibold",
+                project.data.status === "done"
+                  ? "bg-green-700 text-white"
+                  : "bg-amber-700 text-white",
+              ]}
+            >
+              {project.data.status === "done" ? "Done" : "In progress"}
+            </span>
+          )
+        }
+        {
+          project.data.technos && (
+            <div class="flex-1">
+              <Technos technos={project.data.technos} />
+            </div>
+          )
+        }
+        {
+          project.data.link && (
+            <a
+              href={project.data.link}
+              target="_blank"
+              class="text-primary text-sm font-medium hover:underline"
+            >
+              View on GitHub &rarr;
+            </a>
+          )
+        }
+      </div>
+    </header>
+
+    <div class="pb-24">
+      <div
+        class="prose prose-lg prose-headings:font-heading prose-headings:tracking-tight prose-h2:mt-12 prose-h2:mb-6 prose-h2:text-3xl prose-h3:mt-8 prose-h3:mb-4 prose-h3:text-2xl prose-p:text-foreground/90 prose-p:mb-6 prose-p:leading-relaxed prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-foreground prose-strong:font-semibold prose-ul:my-6 prose-li:my-2 max-w-none"
+      >
+        <Content />
+      </div>
+    </div>
+  </article>
+</Layout>
