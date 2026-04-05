@@ -9,6 +9,7 @@ export const zArticle = ({ image }: SchemaContext) =>
     image: zMediaImage({ image }).optional(),
     publishedDate: z.date(),
     tags: z.array(z.string()).optional(),
+    externalUrl: z.string().url().optional(),
   });
 
 export type Article = z.infer<ReturnType<typeof zArticle>>;
