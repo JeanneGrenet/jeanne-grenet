@@ -1,5 +1,12 @@
 ---
 import Button from "./starwind/button";
+import { RxHamburgerMenu } from "react-icons/rx";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownContent,
+  DropdownItem,
+} from "./starwind/dropdown";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -36,7 +43,7 @@ const navigation = [
       </ul>
     </nav>
 
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2">
       <Button variant="outline" size="sm">
         <a
           href="/resume.pdf"
@@ -47,6 +54,26 @@ const navigation = [
           Resume
         </a>
       </Button>
+
+      <div class="md:hidden">
+        <Dropdown>
+          <DropdownTrigger
+            class="text-muted-foreground hover:text-foreground hover:bg-secondary/70 rounded-lg p-2"
+            aria-label="Menu de navigation"
+          >
+            <RxHamburgerMenu className="size-5" />
+          </DropdownTrigger>
+          <DropdownContent align="end" class="min-w-[10rem]">
+            {
+              navigation.map((item) => (
+                <DropdownItem as="a" href={item.href}>
+                  {item.name}
+                </DropdownItem>
+              ))
+            }
+          </DropdownContent>
+        </Dropdown>
+      </div>
     </div>
   </div>
 </header>
