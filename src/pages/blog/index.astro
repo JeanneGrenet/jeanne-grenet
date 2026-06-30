@@ -3,7 +3,9 @@ import Layout from "@/layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
 import { LuArrowUpRight } from "react-icons/lu";
-const articles = await getCollection("articles");
+const articles = (await getCollection("articles")).sort(
+  (a, b) => b.data.publishedDate.valueOf() - a.data.publishedDate.valueOf()
+);
 ---
 
 <Layout>
